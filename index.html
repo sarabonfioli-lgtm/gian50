@@ -26,6 +26,9 @@
     font-size: 15px;
     line-height: 1.6;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   /* Mountain background */
@@ -48,16 +51,10 @@
   .page {
     position: relative;
     z-index: 1;
-    max-width: 600px;
     width: 100%;
-    margin: 0 auto;
+    max-width: 600px;
     padding: 60px 20px 80px;
     background: var(--cream);
-  }
-
-  /* Prevent any child from exceeding page width */
-  .page * {
-    max-width: 100%;
   }
 
   /* Header */
@@ -339,8 +336,9 @@
   /* Nights visual */
   .nights-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    width: 100%;
   }
 
   .night-card {
