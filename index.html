@@ -608,8 +608,20 @@
     </div>
   </div>
 
+  <!-- Address box -->
+  <div style="border:1px solid var(--stone-light);border-radius:4px;background:white;padding:18px 20px;margin-bottom:52px;display:flex;align-items:flex-start;gap:16px;">
+    <div style="font-size:20px;margin-top:2px">📍</div>
+    <div>
+      <div style="font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--stone);margin-bottom:6px">Location · Dove siamo</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--ink);margin-bottom:4px">Chalet Bike Hotel Ai Ciar</div>
+      <div style="font-size:13px;color:var(--stone);margin-bottom:8px">Località Ciar, 24062 Ceratello BG</div>
+      <div style="font-size:12px;color:var(--rust);font-style:italic;margin-bottom:10px">Circa 1h30 di auto da Milano · About 1h30 from Milan</div>
+      <a href="https://maps.google.com/?q=Località+Ciar,+24062+Ceratello+BG" target="_blank" style="font-size:11px;font-weight:500;letter-spacing:1px;color:var(--rust);text-decoration:none;border-bottom:1px solid var(--rust-light);">Open in Google Maps →</a>
+    </div>
+  </div>
+
   <!-- Form -->
-  <form id="rsvpForm" name="gian-rsvp" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
+  <form id="rsvpForm" name="gian-rsvp" method="POST" action="https://formspree.io/f/xojpaeln" onsubmit="handleSubmit(event)">
 
     <!-- Section 1: Who are you -->
     <div class="form-section">
@@ -935,10 +947,22 @@ async function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
   const data = new FormData(form);
-  await fetch('/', { method: 'POST', body: data });
-  form.style.display = 'none';
-  document.getElementById('successScreen').classList.add('visible');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  try {
+    const res = await fetch('https://formspree.io/f/xojpaeln', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('successScreen').classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert('Something went wrong. Please try again. / Qualcosa è andato storto, riprova.');
+    }
+  } catch {
+    alert('Something went wrong. Please try again. / Qualcosa è andato storto, riprova.');
+  }
 }
 </script>
 </body>
