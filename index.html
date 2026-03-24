@@ -40,12 +40,24 @@
     z-index: 0;
   }
 
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .page {
     position: relative;
     z-index: 1;
-    max-width: 680px;
+    max-width: 600px;
+    width: 100%;
     margin: 0 auto;
-    padding: 60px 24px 80px;
+    padding: 60px 20px 80px;
+    background: var(--cream);
+  }
+
+  /* Prevent any child from exceeding page width */
+  .page * {
+    max-width: 100%;
   }
 
   /* Header */
@@ -66,12 +78,13 @@
 
   .header-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(72px, 18vw, 120px);
+    font-size: clamp(64px, 12vw, 110px);
     font-weight: 300;
     line-height: 0.9;
     color: var(--ink);
     letter-spacing: -2px;
     margin-bottom: 8px;
+    word-break: break-word;
   }
 
   .header-title span {
@@ -730,8 +743,8 @@
           <label class="check-item">
             <input type="radio" name="sunday" value="no">
             <div>
-              <div class="check-item-text">No, I'm leaving Sunday morning</div>
-              <div class="check-item-sub">Parto domenica mattina</div>
+              <div class="check-item-text">No, I'm leaving Saturday morning</div>
+              <div class="check-item-sub">Parto sabato mattina</div>
             </div>
           </label>
         </div>
